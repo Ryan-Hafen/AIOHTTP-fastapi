@@ -101,7 +101,6 @@ netDebt numeric,
 link varchar(255),
 finalLink varchar(255),
 foreign key (company_id) references companies(id)
-
 );
 
 create table cashFlowStatement (
