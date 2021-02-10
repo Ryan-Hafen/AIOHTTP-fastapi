@@ -3,6 +3,7 @@ create database ttm;
 create table companies(
 id serial PRIMARY KEY,
 symbol varchar(10),
+name varchar(50),
 sector varchar(50),
 subSector varchar(50),
 headQuarter varchar(50),
@@ -245,9 +246,9 @@ interestCoverage float,
 incomeQuality float,
 dividendYield float,
 payoutRatio float,
-salesGeneralAndAdministrativeToRevenue 0,
+salesGeneralAndAdministrativeToRevenue float,
 researchAndDdevelopementToRevenue float,
-intangiblesToTotalAssets 0,
+intangiblesToTotalAssets float,
 capexToOperatingCashFlow float,
 capexToRevenue float,
 capexToDepreciation float,
@@ -380,3 +381,4 @@ rdexpenseGrowth float,
 sgaexpensesGrowth float,
 foreign key (company_id) references companies(id)
 );
+
