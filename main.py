@@ -10,11 +10,7 @@ import config
 limit = 120
 finType = 'income-statement'
 
-async def write_to_db(connection, params, columns = ('company_id','retrievedDate','symbol','reportedCurrency','fillingDate','acceptedDate','period','revenue','costOfRevenue','grossProfit','grossProfitRatio','researchAndDevelopmentExpenses',
-                'generalAndAdministrativeExpenses','sellingAndMarketingExpenses','otherExpenses','operatingExpenses','costAndExpenses','interestExpense','depreciationAndAmortization','ebitda','ebitdaratio',
-                'operatingIncome','operatingIncomeRatio','totalOtherIncomeExpensesNet','incomeBeforeTax','incomeBeforeTaxRatio','incomeTaxExpense','netIncome','netIncomeRatio','eps','epsdiluted','weightedAverageShsOut',
-                'weightedAverageShsOutDil','link','finalLink')):
-    
+async def write_to_db(connection, params):
     result =  await connection.copy_records_to_table('incomeStatement', records=params)
     print(result)
 
@@ -24,7 +20,9 @@ async def get_fin(pool, company_id, url):
             async with aiohttp.ClientSession() as session:
                 async with session.get(url=url) as r:
                     resp = await r.read()
+                    print(resp)
                     response = json.loads(resp)[0]
+                    print(response)
                     params = [(company_id, response['date'], response['symbol'], response['reportedCurrency'], response['fillingDate'], 
                                 response['acceptedDate'], response['period'], response['revenue'], response['costOfRevenue'], response['grossProfit'], 
                                 response['grossProfitRatio'], response['researchAndDevelopmentExpenses'], response['generalAndAdministrativeExpenses'], 
@@ -34,10 +32,11 @@ async def get_fin(pool, company_id, url):
                                 response['incomeBeforeTax'], response['incomeBeforeTaxRatio'], response['incomeTaxExpense'], response['netIncome'], 
                                 response['netIncomeRatio'], response['eps'], response['epsdiluted'], response['weightedAverageShsOut'], response['weightedAverageShsOutDil'],
                                 response['link'], response['finalLink'])]
-                    await write_to_db(connection, params)
+                    # await write_to_db(connection, params)
+                    # print(params)
     except Exception as e:
-        print(e)
-        # print(f'Unable to get url {url} due to {e.__class__}')
+        # print(e)
+        print(f'Unable to get url {url} due to {e.__class__}')
 
 async def get_fins(pool, company_url):
     try:
