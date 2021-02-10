@@ -1,3 +1,16 @@
+create database ttm;
+
+create table companies(
+id serial PRIMARY KEY,
+symbol varchar(10),
+sector varchar(50),
+subSector varchar(50),
+headQuarter varchar(50),
+dateFirstAdded date,
+cik char(10),
+founded varchar(25)
+);
+
 create table incomeStatement (
 id serial PRIMARY KEY,
 company_id int NOT NULL,
