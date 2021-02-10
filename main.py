@@ -10,10 +10,13 @@ import config
 limit = 120
 finType = 'income-statement'
 
-async def write_to_db(connection, params):
+async def write_to_db(connection, params, columns = ('company_id','retrievedDate','symbol','reportedCurrency','fillingDate','acceptedDate','period','revenue','costOfRevenue','grossProfit','grossProfitRatio','researchAndDevelopmentExpenses',
+                'generalAndAdministrativeExpenses','sellingAndMarketingExpenses','otherExpenses','operatingExpenses','costAndExpenses','interestExpense','depreciationAndAmortization','ebitda','ebitdaratio',
+                'operatingIncome','operatingIncomeRatio','totalOtherIncomeExpensesNet','incomeBeforeTax','incomeBeforeTaxRatio','incomeTaxExpense','netIncome','netIncomeRatio','eps','epsdiluted','weightedAverageShsOut',
+                'weightedAverageShsOutDil','link','finalLink')):
+    
     result =  await connection.copy_records_to_table('incomeStatement', records=params)
     print(result)
-
 
 async def get_fin(pool, company_id, url):
     try:
