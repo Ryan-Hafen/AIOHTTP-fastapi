@@ -3,3 +3,5 @@ aiohttp
 asyncio
 asyncpg
 psycopg2
+cchardet
+aiodns

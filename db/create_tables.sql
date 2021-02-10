@@ -17,7 +17,7 @@ founded varchar(25)
 create table incomeStatement (
 id serial PRIMARY KEY,
 company_id int NOT NULL,
-retrievedDate date,
+retrievedDate date not null default CURRENT_DATE,
 symbol VARCHAR(10),
 reportedCurrency VARCHAR(5),
 fillingDate date,
@@ -57,7 +57,7 @@ foreign key (company_id) references companies(id)
 create table balanceSheet (
 id serial PRIMARY KEY,
 company_id int NOT NULL,
-retrievedDate date,
+retrievedDate date not null default CURRENT_DATE,
 symbol VARCHAR(10),
 fillingDate timestamp,
 acceptedDate timestamp,
@@ -109,7 +109,7 @@ foreign key (company_id) references companies(id)
 create table cashFlowStatement (
 id serial PRIMARY KEY,
 company_id int NOT NULL,
-retrievedDate date,
+retrievedDate date not null default CURRENT_DATE,
 symbol VARCHAR(10),
 fillingDate timestamp,
 acceptedDate timestamp,
@@ -152,7 +152,7 @@ foreign key (company_id) references companies(id)
 create table financialRatios( 
 id serial PRIMARY KEY,
 company_id int NOT NULL,
-retrievedDate date,
+retrievedDate date not null default CURRENT_DATE,
 dividendYielTTM float,
 dividendYielPercentageTTM float,
 peRatioTTM float,
@@ -216,7 +216,7 @@ foreign key (company_id) references companies(id)
 create table keyMetricsAnnual(
 id serial PRIMARY KEY,
 company_id int NOT NULL,
-retrievedDate date,
+retrievedDate date not null default CURRENT_DATE,
 revenuePerShare float,
 netIncomePerShare float,
 operatingCashFlowPerShare float,
@@ -281,7 +281,7 @@ foreign key (company_id) references companies(id)
 create table keyMetricsTTM ( 
 id serial PRIMARY KEY,
 company_id int NOT NULL,
-retrievedDate date,
+retrievedDate date not null default CURRENT_DATE,
 revenuePerShareTTM float,
 netIncomePerShareTTM float,
 operatingCashFlowPerShareTTM float,
@@ -346,7 +346,7 @@ foreign key (company_id) references companies(id)
 create table financialGrowth(
 id serial PRIMARY KEY,
 company_id int NOT NULL,
-retrievedDate date,
+retrievedDate date not null default CURRENT_DATE,
 revenueGrowth float,
 grossProfitGrowth float,
 ebitgrowth float,
