@@ -3,7 +3,7 @@ import json
 import psycopg2
 import psycopg2.extras
 
-connection = psycopg2.connect(host=config.dbHost, database=config.dbName, user=config.dbUser, password=config.dbPassword)
+connection = psycopg2.connect(database=config.dbName, user=config.dbUser, password=config.dbPassword, host=config.dbHost, port=config.dbPort)
 
 cursor = connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
 

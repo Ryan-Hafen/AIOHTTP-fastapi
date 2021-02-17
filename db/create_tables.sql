@@ -1,7 +1,3 @@
-create database ttm;
-
-
-
 create table companies(
 id serial PRIMARY KEY,
 symbol varchar(10),
